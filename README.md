@@ -1,4 +1,4 @@
-# Scripts for manuscript "Screen Time Is Associated with Eating in the Absence of Hunger in Preschoolers: Attentional Bias to Food Cues as a Candidate Mechanism"
+# Screen Time Is Associated with Eating in the Absence of Hunger in Preschoolers: Attentional Bias to Food Cues as a Candidate Mechanism
 
 We use these scripts for the analyses, tables, and statistical figures for the preschool screen time study.
 
