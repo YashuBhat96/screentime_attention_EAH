@@ -1,9 +1,6 @@
-# screentime_attention_EAH
-Scripts for manuscript "Screen Time Is Associated with Eating in the Absence of Hunger in Preschoolers: Attentional Bias to Food Cues as a Candidate Mechanism"
+# Scripts for manuscript "Screen Time Is Associated with Eating in the Absence of Hunger in Preschoolers: Attentional Bias to Food Cues as a Candidate Mechanism"
 
-# Screen time, food attention, and Eating in the Absence of Hunger
-
-We use these scripts to reproduce the analyses, tables, and statistical figures for the preschool screen time study. We keep the study inputs separate from the code.
+We use these scripts for the analyses, tables, and statistical figures for the preschool screen time study.
 
 ## Set up and run
 
