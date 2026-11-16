@@ -7,9 +7,10 @@ Run the full workflow with scripts/run_all.py.
 import os, numpy as np, pandas as pd
 from scipy import stats
 
+from input_paths import data_file
 BASE   = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data')
-DATA   = os.path.join(BASE, 'k_ab_bmi.xlsx')
-SCREEN = os.path.join(BASE, 'total_media_use.csv')
+DATA   = str(data_file("participant"))
+SCREEN = str(data_file("screen_time"))
 OUTDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'results', 'tables')
 os.makedirs(OUTDIR, exist_ok=True)
 
@@ -90,13 +91,13 @@ def summary(label, column, digits=1, range_digits=None, include_n=False):
 
 # We use baseline accelerometry for MVPA and nighttime sleep, and summarize each available
 # measure separately.
-mvpa = pd.read_csv(os.path.join(BASE, 'K01_MVPA_BL_051425.csv'), skiprows=1)
+mvpa = pd.read_csv(str(data_file("physical_activity")), skiprows=1)
 mvpa['redcapid'] = pd.to_numeric(mvpa['Subject Name'].astype(str).str.extract(r'^K01M0*(\d+)')[0])
 duration = mvpa['Average MVPA Per Day'].astype(str).str.extract(r'^(\d+)H\s+(\d+)M\s+(\d+)S').astype(float)
 mvpa['mvpa'] = duration[0]*60 + duration[1] + duration[2]/60
 mvpa = mvpa.dropna(subset=['redcapid','mvpa']).drop_duplicates('redcapid').set_index('redcapid')
 
-sleep = pd.read_csv(os.path.join(BASE, 'K01_SleepSummaries_2023-01-20.csv'))
+sleep = pd.read_csv(str(data_file("sleep")))
 sleep['redcapid'] = pd.to_numeric(sleep['PID'].astype(str).str.extract(r'K01M0*(\d+)')[0])
 sleep_hours = sleep.groupby('redcapid')['total.sleep.time'].mean()/60
 

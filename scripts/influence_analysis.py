@@ -7,10 +7,11 @@ Run the full workflow with scripts/run_all.py.
 import os, sys, numpy as np, pandas as pd
 from scipy import stats
 
+from input_paths import data_file
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _DATADIR = os.path.join(_HERE, '..', 'data')
-DATA  = sys.argv[1] if len(sys.argv) > 1 else os.path.join(_DATADIR, "k_ab_bmi.xlsx")
-MEDIA = sys.argv[2] if len(sys.argv) > 2 else os.path.join(_DATADIR, "total_media_use.csv")
+DATA  = sys.argv[1] if len(sys.argv) > 1 else str(data_file("participant"))
+MEDIA = sys.argv[2] if len(sys.argv) > 2 else str(data_file("screen_time"))
 SHEET = "Sheet 1"; N_BOOT = 2000; SEED = 42
 
 raw = pd.read_excel(DATA, sheet_name=SHEET)

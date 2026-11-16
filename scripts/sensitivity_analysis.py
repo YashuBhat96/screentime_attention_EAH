@@ -9,11 +9,12 @@ import numpy as np, pandas as pd
 from scipy import stats
 
 # ------------------------------------------------------------------ CONFIG
+from input_paths import data_file
 BASE      = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data')
-DATA      = os.path.join(BASE, 'k_ab_bmi.xlsx')
-SCREEN    = os.path.join(BASE, 'total_media_use.csv')
-MVPA_F    = os.path.join(BASE, 'K01_MVPA_BL_051425.csv')
-SLEEP_F   = os.path.join(BASE, 'K01_SleepSummaries_2023-01-20.csv')
+DATA      = str(data_file("participant"))
+SCREEN    = str(data_file("screen_time"))
+MVPA_F    = str(data_file("physical_activity"))
+SLEEP_F   = str(data_file("sleep"))
 LOG_OFFSET = 30          # log(EAH + 30); set to 0 for plain log(EAH) among eaters
 
 # ------------------------------------------------------------------ HC3 OLS

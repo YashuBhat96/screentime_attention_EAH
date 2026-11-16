@@ -9,11 +9,12 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
+from input_paths import data_file
 BASE   = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data')
-DATA   = os.path.join(BASE, 'k_ab_bmi.xlsx')
-SCREEN = os.path.join(BASE, 'total_media_use.csv')
-MVPA_F = os.path.join(BASE, 'K01_MVPA_BL_051425.csv')
-SLEEP_F= os.path.join(BASE, 'K01_SleepSummaries_2023-01-20.csv')
+DATA   = str(data_file("participant"))
+SCREEN = str(data_file("screen_time"))
+MVPA_F = str(data_file("physical_activity"))
+SLEEP_F= str(data_file("sleep"))
 OUTDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'results', 'main_analysis')
 os.makedirs(OUTDIR, exist_ok=True)
 
@@ -115,7 +116,7 @@ def sig_lbl(p):
 
 # ------------------------------------------------------------------ load
 print("="*74)
-print("K01 CORRECTED ANALYSIS — full sample (n=42) first, then eaters (n=37)")
+print("SCREEN TIME AND EAH MAIN ANALYSIS — full sample (n=42) first, then eaters (n=37)")
 print("="*74)
 
 raw = pd.read_excel(DATA, sheet_name='Sheet 1')

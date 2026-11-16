@@ -13,12 +13,13 @@ from figure_style import use_manuscript_font
 
 use_manuscript_font()
 
+from input_paths import data_file
 _HERE   = os.path.dirname(os.path.abspath(__file__))
 BASE    = os.path.join(_HERE, '..', 'data')
 FIGDIR  = os.path.join(_HERE, '..', 'results', 'figures')
 os.makedirs(FIGDIR, exist_ok=True)
-DATA    = os.path.join(BASE, 'k_ab_bmi.xlsx')
-SCREEN  = os.path.join(BASE, 'total_media_use.csv')
+DATA    = str(data_file("participant"))
+SCREEN  = str(data_file("screen_time"))
 OFF, DPI, SEED, NB = 30, 300, 42, 2000
 # Okabe-Ito colorblind-safe palette
 FOOD = "#D55E00"   # vermillion  (food)
@@ -261,7 +262,7 @@ if os.path.exists(_PATHS_CSV) and os.path.exists(_IND_CSV):
     _diag_for('first-fixation','First-fixation bias','fig_path_ff.png')
     _diag_for('cumulative-gaze','Cumulative-gaze bias','fig_path_cgd.png')
 else:
-    print("  path diagrams SKIPPED — run k01_analysis_corrected.py first")
+    print("  path diagrams SKIPPED — run main_analysis.py first")
 
 # We stack the two panel exports for the manuscript version of Figure 4.
 if os.path.exists(_PATHS_CSV) and os.path.exists(_IND_CSV):
@@ -277,9 +278,9 @@ if os.path.exists(_PATHS_CSV) and os.path.exists(_IND_CSV):
 # ---------- Fig: preload specificity check (screen time vs preload intake) ----------
 # We use preload intake as a specificity check because it was measured before satiety. We join
 # baseline values by study ID.
-# Preload intake is NOT in k_ab_bmi.xlsx; it comes from the full REDCap export.
+# Preload intake is NOT in participant_eah_eyetracking.xlsx; it comes from the full REDCap export.
 # Reads preload_total_kcal, merges to the analytic sample by ID at baseline.
-PRELOAD_FILE = os.path.join(BASE, '5K01MediaUseFullStud_DATA_2020-06-22_1116.csv')
+PRELOAD_FILE = str(data_file("preload"))
 if os.path.exists(PRELOAD_FILE):
     _pl = pd.read_csv(PRELOAD_FILE, low_memory=False)
     _idc = [c for c in _pl.columns if c.lower() in ('redcapid','record_id','study_id')][0]
