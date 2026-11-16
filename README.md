@@ -2,6 +2,15 @@
 
 We use these scripts for the analyses, tables, and statistical figures for the preschool screen time study.
 
+## Set up and run
+
+```sh
+python3.11 -m venv .venv
+.venv/bin/python -m pip install -r dependencies/requirements.txt
+.venv/bin/python scripts/run_all.py
+```
+
+On Windows, use `.venv\Scripts\python.exe` in place of `.venv/bin/python`.
 | File in `data/` | What we read |
 | --- | --- |
 | `participant_eah_eyetracking.xlsx` | Participant analysis workbook. We read EAH in kcal, food versus toy eye tracking measures, and baseline covariates, including `bmip_bl` for BMI percentile. |
