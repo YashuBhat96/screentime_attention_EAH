@@ -2,33 +2,27 @@
 
 We use these scripts for the analyses, tables, and statistical figures for the preschool screen time study.
 
-## Set up and run
-
-1. Extract the archive. Open a terminal in the `EAH_Public_Pipeline` folder.
-2. Create a folder named `data` beside `scripts` and `dependencies`. Obtain the study files separately through the applicable data access process and place them in `data` using the names below.
-3. From the project root, run these commands. We verified this environment with Python 3.12.
-
-```sh
-python3.12 -m venv .venv
-.venv/bin/python -m pip install -r dependencies/requirements.txt
-.venv/bin/python scripts/run_all.py
-```
-
-On Windows, use `.venv\Scripts\python.exe` in place of `.venv/bin/python`.
-
 | File in `data/` | What we read |
 | --- | --- |
-| `k_ab_bmi.xlsx` | Participant analysis workbook. We read EAH in kcal, food versus toy eye tracking measures, and baseline covariates, including `bmip_bl` for BMI percentile. |
-| `total_media_use.csv` | Weekly screen use in minutes, converted to hours per day. |
-| `K01_MVPA_BL_051425.csv` | Baseline accelerometry for daily moderate to vigorous physical activity. |
-| `K01_SleepSummaries_2023-01-20.csv` | Nighttime sleep summaries. |
-| `5K01MediaUseFullStud_DATA_2020-06-22_1116.csv` | Baseline preload energy intake in kcal. The figure script uses the study ID, event if present, and `preload_total_kcal`. |
+| `participant_eah_eyetracking.xlsx` | Participant analysis workbook. We read EAH in kcal, food versus toy eye tracking measures, and baseline covariates, including `bmip_bl` for BMI percentile. |
+| `weekly_screen_time.csv` | Weekly screen use in minutes, converted to hours per day. |
+| `baseline_physical_activity.csv` | Baseline accelerometry for daily moderate to vigorous physical activity. |
+| `sleep_duration.csv` | Nighttime sleep summaries. |
+| `preload_energy_intake.csv` | Baseline preload energy intake in kcal. The figure script uses the study ID, event if present, and `preload_total_kcal`. |
 
-We link files by the same study ID and use the expected column names and coding in the released inputs. We use only the necessary columns from the preload export. Install Times New Roman on your system before running for the requested figure typography. Matplotlib warns and uses a serif fallback if the font is unavailable. Word tables specify Times New Roman in their formatting.
+We link records by the same study ID and use the expected column names and coding in the released inputs. We use only the necessary columns from the preload export. Install Times New Roman on your system before running for the requested figure typography. Matplotlib warns and uses a serif fallback if the font is unavailable. Word tables specify Times New Roman in their formatting.
+
+## How filenames are configured
+
+All input filenames are defined **once** in `root_folder/scripts/input_paths.py` 
+The script `scripts/run_all.py` checks all five files before running the pipeline.
+
+Participant name/IDs are masked with random IDs. Race and Ethnicity are not included in the data files for privacy concerns.
+
 
 ## Outputs
 
-We create `results/` when the pipeline runs. Each step writes a log to `results/logs/`. We overwrite named outputs on rerun and leave other files alone.
+We create `results/` when the pipeline runs.
 
 | Manuscript item | Generated file in `results/` |
 | --- | --- |
