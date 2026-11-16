@@ -15,12 +15,13 @@ from figure_style import use_manuscript_font
 
 use_manuscript_font()
 
+from input_paths import data_file
 BASE   = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data')
 OUTDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'results', 'cgd')
 os.makedirs(OUTDIR, exist_ok=True)
 
-DATA   = os.path.join(BASE, 'k_ab_bmi.xlsx')
-SCREEN = os.path.join(BASE, 'total_media_use.csv')
+DATA   = str(data_file("participant"))
+SCREEN = str(data_file("screen_time"))
 OFFSET, SEED, N_BOOT = 30, 42, 2000
 COV = ['z_age', 'female', 'z_bmi_percentile', 'z_income']
 

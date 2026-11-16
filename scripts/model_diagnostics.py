@@ -9,11 +9,12 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-DATA  = sys.argv[1] if len(sys.argv) > 1 else "k_ab_bmi.xlsx"
-MEDIA = sys.argv[2] if len(sys.argv) > 2 else "total_media_use.csv"
+from input_paths import data_file
+DATA  = sys.argv[1] if len(sys.argv) > 1 else str(data_file("participant"))
+MEDIA = sys.argv[2] if len(sys.argv) > 2 else str(data_file("screen_time"))
 SHEET = "Sheet 1"
 
-# ---------- load & derive (mirrors k01_SSIB_analysis.py) ----------
+# ---------- load & derive (mirrors main_analysis.py) ----------
 raw = pd.read_excel(DATA, sheet_name=SHEET)
 num = lambda c: pd.to_numeric(raw[c], errors="coerce") if c in raw.columns else pd.Series(np.nan, index=raw.index)
 df = pd.DataFrame({

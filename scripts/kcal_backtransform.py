@@ -7,11 +7,12 @@ Run the full workflow with scripts/run_all.py.
 import os, re, numpy as np, pandas as pd
 from scipy import stats
 
+from input_paths import data_file
 BASE   = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data')
-DATA   = os.path.join(BASE,'k_ab_bmi.xlsx')
-SCREEN = os.path.join(BASE,'total_media_use.csv')
-MVPA_F = os.path.join(BASE,'K01_MVPA_BL_051425.csv')
-SLEEP_F= os.path.join(BASE,'K01_SleepSummaries_2023-01-20.csv')
+DATA   = str(data_file("participant"))
+SCREEN = str(data_file("screen_time"))
+MVPA_F = str(data_file("physical_activity"))
+SLEEP_F= str(data_file("sleep"))
 OFF, SEED, NB = 30, 42, 2000
 
 def ols_beta(y, X):
